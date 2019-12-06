@@ -1,0 +1,28 @@
+{
+  "name": "mercahomeapi",
+  "description": "Backend - APi Rest for ecommerce demo",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Santi Peris",
+  "license": "ISC",
+  "scripts": {
+    "serve": "node ./bin/www",
+    "dev": "nodemon --exec babel-node ./bin/www",
+    "start": "SET DEBUG=mynetflixapi:* & npm run dev"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "mariadb": "^2.1.4",
+    "morgan": "~1.9.1",
+    "sequelize": "^5.21.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "nodemon": "^2.0.1"
+  }
+}
