@@ -7,7 +7,7 @@ export default (sequelize, DataTypes) => {
     price: { type: DataTypes.FLOAT(4, 2), allowNull: false },
     ud: { type: DataTypes.STRING(10), allowNull: false },
     image: { type: DataTypes.STRING, allowNull: false },
-    stock: { type: DataTypes.INTEGER(4), allowNull: false },
+    stock: { type: DataTypes.INTEGER(4), allowNull: false, defaultValue: 100 },
     fk_category: { type: DataTypes.INTEGER(11), allowNull: false },
     promo: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
 
