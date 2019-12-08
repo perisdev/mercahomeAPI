@@ -8,6 +8,8 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+const categoriesRouter = require('./routes/categories');
+const citiesRouter = require('./routes/cities');
 
 let app = express();
 
@@ -31,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
+app.use('/categories', categoriesRouter);
+app.use('/cities', citiesRouter);
 
 // Sync all models to mariaDB
 // db.sequelize.sync({ force: false });
