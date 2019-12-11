@@ -10,14 +10,8 @@ const promoController = (req, res, next) => {
 
   db.sequelize.query(req.select.concat(' && products.promo = 1'), { type: db.sequelize.QueryTypes.SELECT })
     .then(items => (items[0]) ? res.status(200).json(items) : next())
-    .catch(err => res.status(500).json({ message: `products error: ${err}` }));
-
-  // db.Product.findAll({ 
-  //   where: { promo: 1 }
-  // })
-  //   .then(items => (items[0]) ? res.status(200).json(items) : next())
-  //   .catch(err => res.status(500).json({ message: `products error: ${err}` }));
-
+    .catch(err => res.status(500).json({ message: `products error: ${err}` }));  
+    
 };
 
 module.exports = promoController;

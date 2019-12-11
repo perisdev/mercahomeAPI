@@ -18,7 +18,11 @@ export default (sequelize, DataTypes) => {
       through: 'Order',
       as: 'Users',
       foreignKey: 'fk_product_id',
-    })
+    });
+
+    Product.belongsTo(models.Category, {
+      foreignKey: 'fk_category'
+    });    
   }
 
   return Product;
