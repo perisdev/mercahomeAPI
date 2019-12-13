@@ -11,7 +11,7 @@ const allController = (req, res, next) => {
   db.sequelize.query(req.select, { type: db.sequelize.QueryTypes.SELECT })
     .then(items => (items[0]) ? res.status(200).json(items) : next())
     .catch(err => res.status(500).json({ message: `products error: ${err}` }));
-    
+
 };
 
 
@@ -25,8 +25,8 @@ const promoController = (req, res, next) => {
 
   db.sequelize.query(req.select.concat(' && products.promo = 1'), { type: db.sequelize.QueryTypes.SELECT })
     .then(items => (items[0]) ? res.status(200).json(items) : next())
-    .catch(err => res.status(500).json({ message: `products error: ${err}` }));  
-    
+    .catch(err => res.status(500).json({ message: `products error: ${err}` }));
+
 };
 
 
@@ -36,7 +36,30 @@ const promoController = (req, res, next) => {
 
 const addController = (req, res, next) => {
 
+  try {
+
+    // if (typeof(req.body.price) !== "number" || req.body.price < 0.01)
+    //   return res.status(401).json({ message: 'precio no valido' });
+
+    db.Product.create(req.body)
+      .then(item => {
+
+        res.status(200).json({
+          message: 'Producto añadido',
+          product: item
+        })
+
+      })
+      .catch(next);
+
+  } catch (err) {
+
+    res.status(500).json({
+      message: `producto error: ${err}`
+    });
+  }
 };
+
 
 /** 
  * update a product in DB
@@ -44,36 +67,34 @@ const addController = (req, res, next) => {
 
 const updateController = (req, res, next) => {
 
+  try {
+
+    db.Product.update(req.body,
+      {
+        where: { id: req.body.id },
+        // returning: true,
+        // plain: true
+      })
+      .then((rowsUpdate) => {
+
+        if (rowsUpdate < 1)
+          return res.status(401).json({ message: 'producto no encontrado' })
+
+        res.status(200).json({
+          message: 'producto actualizado',
+          product: req.body
+        });
+      })
+      .catch(next)
+
+  } catch (err) {
+    res.status(500).json({ message: `producto error: ${err}` });
+  }
 };
 
-
-module.exports = { 
+module.exports = {
   allController,
   promoController,
   addController,
   updateController
 };
-
-
-// db.Order.findAll({
-//   where: {
-//     fk_user_id: 1
-//   },
-//   include: [{ model: db.User }, { model: db.Product }]
-// })
-//   .then(items => (items[0]) ? res.status(200).json(items) : next())
-//   .catch(err => res.status(500).json({ message: `products error: ${err}` }));
-
-// // db.Product.findAll({
-// //   // where: {
-// //   //   id: 100
-// //   // },
-// //   include: {
-// //     model: db.Category,
-// //     attributes: ['category'],
-// //     where: { category: 'agua' }
-// //   }
-// //   // include: [{ model: db.User }, { model: db.Product }]
-// // })
-//   .then(items => (items[0]) ? res.status(200).json(items) : next())
-//   .catch(err => res.status(500).json({ message: `products error: ${err}` }));
