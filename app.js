@@ -21,12 +21,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.options('/*',(req,res)=>res.send())  // response status 200 for all options. to fix options issue
+app.options('/*', (req, res) => res.send())  // response status 200 for all options. to fix options issue
 // ...
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -38,5 +38,7 @@ app.use('/cities', citiesRouter);
 
 // Sync all models to mariaDB
 // db.sequelize.sync({ force: false });
+// Sync and modify the tables if the models change
+// db.sequelize.sync({alter: true});
 
 module.exports = app;

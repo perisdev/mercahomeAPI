@@ -5,16 +5,18 @@ module.exports = {
 
     return queryInterface.bulkInsert('Users',[
       {
-        "user_name": "admin",
-        "email": "admin@gmail.com",
-        "role": "admin",
-        "token": "123456789123456789"
+        "user_name": "nick1",
+        "email": "nick1@gmail.com",
+        "role": "nick1@gmail.com",
+        "token": "123456789123456789",
+        "fk_city": 1
       },
       {
         "user_name": "nick2",
         "email": "nick2@gmail.com",
-        "role": "cli",
-        "token": "123456789123456789"
+        "role": "nick2@gmail.com",
+        "token": "123456789123456789",
+        "fk_city": 2
       }
     ] , {});
   },

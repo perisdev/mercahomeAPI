@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+# archivo de configuración de entorno de Web Storm
+.idea
