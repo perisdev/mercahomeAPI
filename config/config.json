@@ -5,6 +5,9 @@
     "database": "mercahome",
     "host": "127.0.0.1",
     "dialect": "mariadb",
+    "dialectOptions": {
+      "timezone": "Etc/GMT0"
+    },
     "operatorsAliases": 0
   },
   "test": {

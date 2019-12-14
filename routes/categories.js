@@ -8,6 +8,6 @@ import categoriesController from '../controllers/categoriesController';
 router.get('/', categoriesController);
 
 // 404 default
-router.use((req, res) => res.status(404).json({ message: 'The resource you requested could not be found' }))
+router.use((req, res) => res.status(404).json({ message: 'The resource you requested could not be found' }));
 
 module.exports = router;
