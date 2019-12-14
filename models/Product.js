@@ -4,7 +4,7 @@ export default (sequelize, DataTypes) => {
 
         name: {type: DataTypes.STRING, allowNull: false},
         volume: {type: DataTypes.STRING(50), allowNull: false},
-        price: {type: DataTypes.FLOAT(4, 2), allowNull: false, validate: {isFloat: true}},
+        price: {type: DataTypes.FLOAT(4, 2), allowNull: false, validate: {isFloat: true, min: 0.01}},
         ud: {type: DataTypes.STRING(10), allowNull: false},
         image: {type: DataTypes.STRING, allowNull: false, validate: {isUrl: true}},
         stock: {type: DataTypes.INTEGER(4), allowNull: false, defaultValue: 100},

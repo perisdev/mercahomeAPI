@@ -38,19 +38,20 @@ const addController = (req, res, next) => {
 
   try {
 
-    // if (typeof(req.body.price) !== "number" || req.body.price < 0.01)
-    //   return res.status(401).json({ message: 'precio no valido' });
-
     db.Product.create(req.body)
-      .then(item => {
 
+      // ok
+      .then(item => {
         res.status(200).json({
           message: 'Producto añadido',
           product: item
         })
-
       })
-      .catch(next);
+
+      // validation err
+      .catch(err => {
+        res.status(500).json({ message: err });
+      });
 
   } catch (err) {
 
@@ -85,10 +86,33 @@ const updateController = (req, res, next) => {
           product: req.body
         });
       })
-      .catch(next)
+
+      // validation err
+      .catch(err => {
+        res.status(500).json({ message: err.errors[0].message });
+      });
 
   } catch (err) {
     res.status(500).json({ message: `producto error: ${err}` });
+  }
+};
+
+/** 
+ * remove a product in DB
+ * -----------------------------------------------*/
+
+const removeController = (req, res, next) => {
+
+  try {
+
+    db.Product.destroy({
+      where: { id: req.query.id },
+    })
+      .then(done => (done) ? res.status(200).json({ message: 'producto eliminado' }) : next())
+      .catch(next);
+
+  } catch (err) {
+    res.status(500).json({ message: `error eliminando producto: ${err}` });
   }
 };
 
@@ -96,5 +120,6 @@ module.exports = {
   allController,
   promoController,
   addController,
-  updateController
+  updateController,
+  removeController
 };
