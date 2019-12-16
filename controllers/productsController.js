@@ -1,10 +1,10 @@
+import db from '../models';
+
 /** 
  * responds with all products.
  * 
  * accepts filter by 'id' or 'name' or 'category'.
  * -----------------------------------------------*/
-
-import db from '../models';
 
 const allController = (req, res, next) => {
 

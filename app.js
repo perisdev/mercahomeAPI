@@ -10,6 +10,7 @@ const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
 const citiesRouter = require('./routes/cities');
+const ordersRouter = require('./routes/orders');
 
 let app = express();
 
@@ -35,9 +36,10 @@ app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/categories', categoriesRouter);
 app.use('/cities', citiesRouter);
+app.use('/orders', ordersRouter);
 
 // Sync all models to mariaDB
-// db.sequelize.sync({ force: false });
+// db.sequelize.sync({ force: true });
 // Sync and modify the tables if the models change
 // db.sequelize.sync({alter: true});
 
