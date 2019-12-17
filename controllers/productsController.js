@@ -29,6 +29,29 @@ const promoController = (req, res, next) => {
 
 };
 
+/** 
+ * responds with all products top.
+ * -----------------------------------------------*/
+
+const topController = (req, res, next) => {
+
+    db.Order.findAll({
+      attributes: [
+        'fk_product_id',
+        [db.sequelize.fn('SUM', db.sequelize.col('qty')), 'qty_total'],
+        [db.sequelize.fn('SUM', db.sequelize.col('current_price')), 'price_total']
+      ],
+      group: ['fk_product_id'],
+      order: [[db.sequelize.col("qty_total"), "DESC"]],   
+      
+      include: {
+        model: db.Product
+      }
+    })
+      .then(items => (items[0]) ? res.status(200).json(items) : next())
+      .catch(err => res.status(500).json({ message: `productos top error: ${err}` }));
+
+};
 
 /** 
  * add a new product in DB
@@ -119,6 +142,7 @@ const removeController = (req, res, next) => {
 module.exports = {
   allController,
   promoController,
+  topController,
   addController,
   updateController,
   removeController

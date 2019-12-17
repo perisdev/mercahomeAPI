@@ -8,6 +8,7 @@ import productsFilterMiddleware from '../middlewares/productsFilterMiddleware';
 import {
   allController,
   promoController,
+  topController,
   addController,
   updateController,
   removeController
@@ -16,6 +17,7 @@ import {
 // routes
 router.get('/', productsFilterMiddleware, allController);
 router.get('/promo', productsFilterMiddleware, promoController);
+router.get('/top', topController);
 router.post('/add', addController);
 router.patch('/update', updateController);
 router.delete('/remove', removeController);
