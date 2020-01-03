@@ -19,8 +19,8 @@ router.get('/', productsFilterMiddleware, allController);
 router.get('/promo', productsFilterMiddleware, promoController);
 router.get('/top', topController);
 router.post('/add', addController);
-router.patch('/update', updateController);
-router.delete('/remove', removeController);
+router.patch('/update', productsFilterMiddleware, updateController);
+router.delete('/remove', productsFilterMiddleware, removeController);
 
 // 404 default
 router.use((req, res) => res.status(404).json({ message: 'The resource you requested could not be found' }))

@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+// middlewares
+import validationTokenMiddleware from '../middlewares/validationTokenMiddleware';
+
 // controllers
 import { addController, allByUserController } from '../controllers/ordersController';
 
 // routes
+router.use(validationTokenMiddleware);
+
 router.get('/', allByUserController);
 router.post('/add', addController);
 
