@@ -42,7 +42,8 @@ const topController = (req, res, next) => {
         [db.sequelize.fn('SUM', db.sequelize.col('current_price')), 'price_total']
       ],
       group: ['fk_product_id'],
-      order: [[db.sequelize.col("qty_total"), "DESC"]],   
+      order: [[db.sequelize.col("price_total"), "DESC"]],   
+      // order: [[db.sequelize.col("qty_total"), "DESC"]],   
       
       include: {
         model: db.Product
