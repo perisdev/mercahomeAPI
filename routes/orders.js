@@ -10,7 +10,7 @@ import { addController, allByUserController } from '../controllers/ordersControl
 // routes
 router.use(validationTokenMiddleware);
 
-router.get('/', allByUserController);
+router.post('/', allByUserController);
 router.post('/add', addController);
 
 // 404 default

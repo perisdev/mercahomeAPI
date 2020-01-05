@@ -58,7 +58,7 @@ const allByUserController = async (req, res, next) => {
   } catch (err) {
 
     res.status(500).json({
-      message: `pedido error: ${err}`
+      message: `order error: ${err}`
     });
   }
 };
