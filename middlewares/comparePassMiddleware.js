@@ -20,7 +20,11 @@ const comparePassMiddleware = async (req, res, next) => {
                     return res.status(500).json({message: 'Error en el login'})
                 }
             })
-            .catch(err => `Error: Error en login -> ${err}`);
+            .catch(err => {
+              `Error: Error en login -> ${err}`;
+
+              res.status(400).json({message: 'error en login'});
+            }); 
 
     }catch(error){
         console.log(error)
