@@ -2,7 +2,7 @@
 
 > API para un eCommerce estilo 'Mercadona' usando NodeJS / Express / MySql / Sequelize.
 
-> Es la parte backend del proyecto MERCAHOME y trabaja junto con el frontend [Mercahome-Front](https://github.com/AlbertoGarel/Mercahome-Front) 
+> Es la parte backend del proyecto MERCAHOME y trabaja junto con el frontend [Mercahome-Front](https://github.com/AlbertoGarel/Mercahome-Front/tree/develop) 
 
 ```
 ```
